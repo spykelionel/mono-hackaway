@@ -4,6 +4,7 @@ const cors = require('cors')
 const compression = require('compression')
 const helmet = require('helmet')
 const userRoutes = require('./routes/user.routes')
+const path = require('path');
 
 const app = express()
 
@@ -12,10 +13,16 @@ app.use(morgan('dev'))
 app.use(cors({origin: ["*"],}))
 app.use(compression())
 app.use(helmet())
+app.use(express.static(path.join(__dirname)));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 app.use('/user', userRoutes)
+
+app.get("/", (request, response) => {
+    response.sendFile(__dirname + "/index.html");
+})
+
 app.get('/', (req,res)=>res.send("Welcome to hackaway. "))
 app.use(identifyError,handleError)
 
