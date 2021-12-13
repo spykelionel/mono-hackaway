@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Guide</h1>
-    Base url:<a href="https://connect-hackaway.herokuapp.com/">https://connect-hackaway.herokuapp.com/</a>
+    Base url: <a href="https://connect-hackaway.herokuapp.com/">https://connect-hackaway.herokuapp.com/</a>
     <p>Available endpoints</p>
      - All endpoints must be authenticated 
     <ul>
@@ -20,10 +20,3 @@
     </ul>
 </body>
 </html>
-router
-  .get("/", auth,user.getAll)
-  .get("/:id",auth, user.getOne)
-  .post("/", user.create)
-  .post('/login', user.login)
-  .post('/auth/:code',auth, user.authenticate)
-  .patch("/:id", auth,user.update)
