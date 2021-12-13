@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 app.use('/user', userRoutes)
-
+app.get('/', (req,res)=>res.send("Welcome to hackaway. "))
 app.use(identifyError,handleError)
 
 function identifyError(req,res,next){
