@@ -6,7 +6,7 @@ const user = require('../controllers/user.controller')
 router
   .get("/", auth,user.getAll)
   .get("/:id",auth, user.getOne)
-  .post("/register", user.upload, user.create)
+  .post("/", user.upload, user.create)
   .post('/login', user.login)
   .post('/auth/:code',auth, user.authenticate)
   .patch("/:id", auth,user.update)
