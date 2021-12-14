@@ -1,8 +1,20 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const axios = require("axios").default;
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: (req, res, cb) => {
+    cb(null, `./uploads`);
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + "_" + file.originalname);
+  },
+});
+
+const uploads = multer({ storage });
 
 module.exports = {
+  upload: uploads.single("avatar"),
   create: async (req, res) => {
     User?.exists({ email: req.body.email })
       .then(async (result) => {
@@ -19,6 +31,7 @@ module.exports = {
               const user = new User({
                 ...req.body,
                 password: hash,
+                avatar: req?.file?.path ?? "none",
               });
               await user
                 .save()

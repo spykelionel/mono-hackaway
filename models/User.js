@@ -1,10 +1,14 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    name: String,
+    firstName: String,
+    lastName: String,
     phone: String,
     email: String,
     address: String,
+    password: String,
+    country: String,
+    avatar: String,
     accounts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Account"

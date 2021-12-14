@@ -10,13 +10,37 @@
     <h1>Guide</h1>
     Base url: <a href="https://connect-hackaway.herokuapp.com/">https://connect-hackaway.herokuapp.com/</a>
     <p>Available endpoints</p>
-     - All endpoints must be authenticated 
+     - All endpoints must be authenticated except /register and /login
     <ul>
         <!-- <li>/user/ - get all users: GET</li>
         <li>/user/{id} - get user: GET</li> -->
-        <li>/user/ - register user: POST</li>
+        <li>/user/register - register user: <code>POST</code></li>
+        <code>
+            fields 
+            <ul>
+                <li>firstName: String</li>
+                <li>lastName: String</li>
+                <li>email: String</li>
+                <li>password: String</li>
+            </ul>
+        </code>
         <li>/user/login - login user: POST</li>
+        <code>
+            fields 
+            <ul>
+                <li>email: String</li>
+                <li>password: String</li>
+            </ul>
+        </code>
         <li>/auth/{code} - authenticate user: POST. {code} from mono connect</li>
+        <code> For /auth/{code}
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'mono-sec-key': mono-app secret,
+                ...default headers,
+              },
+        </code>
     </ul>
 </body>
 </html>
