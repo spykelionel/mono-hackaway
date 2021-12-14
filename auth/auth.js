@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
       bcrypt.compare(client.password, user.password, (error, result) => {
         if (error) {
           return res.status(401).json({
-            message: "Auth failed",
+            message: "Auth failed, Check your credentials",
             value: error,
           });
         }
